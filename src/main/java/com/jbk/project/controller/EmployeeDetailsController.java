@@ -1,6 +1,5 @@
 package com.jbk.project.controller;
 
-
 import java.util.HashMap;
 import java.util.List;
 
@@ -28,50 +27,54 @@ public class EmployeeDetailsController {
 
 	@Autowired
 	EmployeeService service;
-	
-	@PostMapping (value = "/loginCheck")
-	public HashMap<String, Object> loginCheck(@RequestBody Registration registration)
-	{
+
+	@PostMapping(value = "/loginCheck")
+	public HashMap<String, Object> loginCheck(@RequestBody Registration registration) {
 		return service.checkLogin(registration.getEmail(), registration.getPassword());
 	}
-	
+
 	@GetMapping(value = "/getAllEmployee")
-	public List<Employee> getAllEmployee(){
-		
+	public List<Employee> getAllEmployee() {
+
 		return service.getAllEmployee();
 	}
-	
+
 	@GetMapping(value = "/getEmployeeById/{id}")
 	public Employee getEmployeeById(@PathVariable int id) {
-		
+
 		return service.getEmployeeById(id);
 	}
-	
-	@GetMapping (value = "/getAllCountry")
-	public List<Country> getAllCountry(){
-		
+
+	@GetMapping(value = "/getAllCountry")
+	public List<Country> getAllCountry() {
+
 		return service.getAllCountry();
 	}
-	
-	@PostMapping (value = "/addEmployee")
+
+	@PostMapping(value = "/addEmployee")
 	public String addEmployee(@RequestBody Employee employee) {
-		
+
 		return service.addEmployee(employee);
 	}
-	
+
 	@PutMapping(value = "/updateEmployee")
 	public String updateEmployee(@RequestBody Employee employee) {
 		return service.updateEmployee(employee);
 	}
-	
+
 	@DeleteMapping(value = "/deleteEmployee/{id}")
 	public String deleteEmployee(@PathVariable int id) {
 		return service.deleteEmployeeById(id);
 	}
-	
+
 	@GetMapping(value = "/changeStatus/{id}")
 	public String changeStatus(@PathVariable int id) {
-		
+
 		return service.changeStatus(id);
+	}
+
+	@GetMapping("/hi")
+	public String display() {
+		return "hi";
 	}
 }
